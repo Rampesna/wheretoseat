@@ -1,0 +1,238 @@
+{
+  "users": [
+    {
+      "name": "Talha",
+      "email": "talha.can@wheretogo.com",
+      "password": "123",
+      "companies": [
+        {
+          "_id": "5e0d7b9b9b0b1e1b1c1b1c1b",
+          "permissions": [
+            1,
+            2,
+            5
+          ]
+        }
+      ]
+    }
+  ],
+  "customers": [
+    {
+      "name": "Talha",
+      "email": "talha.can@wheretogo.com",
+      "password": "123"
+    }
+  ],
+  "jwtTokens": [
+    {
+      "tokenableType": "User",
+      "tokenableId": 1,
+      "token": "asdasdasd",
+      "expiresAt": "2020-01-01",
+      "createdAt": "2020-01-01",
+      "updatedAt": "2020-01-01",
+      "deletedAt": null
+    },
+    {
+      "tokenableType": "Customer",
+      "tokenableId": 2,
+      "token": "asdasdasd",
+      "expiresAt": "2020-01-01",
+      "createdAt": "2020-01-01",
+      "updatedAt": "2020-01-01",
+      "deletedAt": null
+    }
+  ],
+  "companies": [
+    {
+      "status": {
+        "code": 0,
+        "name": [
+          {
+            "tr": "Pasif",
+            "en": "Passive"
+          }
+        ]
+      },
+      "title": "Test Restorant",
+      "type": {
+        "tr": "Kafe",
+        "en": "Cafe"
+      },
+      "taxNumber": "1111111111",
+      "taxOffice": "Test",
+      "phone": "",
+      "email": "",
+      "address": "",
+      "workdays": [
+        {
+          "day": 0,
+          "dayName": [
+            {
+              "tr": "Pazar",
+              "en": "Sunday"
+            }
+          ],
+          "workHours": [
+            {
+              "start": "09:00",
+              "end": "18:00"
+            }
+          ]
+        },
+        {
+          "day": 1,
+          "dayName": [
+            {
+              "tr": "Pazartesi",
+              "en": "Monday"
+            }
+          ],
+          "workHours": [
+            {
+              "start": "09:00",
+              "end": "18:00"
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "number": 1,
+          "chairCount": 4,
+          "status": {
+            "code": 1,
+            "name": [
+              {
+                "tr": "Boş",
+                "en": "Empty"
+              }
+            ]
+          },
+          "reservations": [
+            {
+              "userId": 1,
+              "date": "2020-01-01",
+              "time": "09:00"
+            }
+          ]
+        },
+        {
+          "number": 1,
+          "chairCount": 4,
+          "status": {
+            "code": 0,
+            "name": [
+              {
+                "tr": "Dolu",
+                "en": "Full"
+              }
+            ]
+          },
+          "reservations": [
+            {
+              "userId": 1,
+              "date": "2020-01-01",
+              "time": "09:00"
+            }
+          ]
+        }
+      ],
+      "menu": [
+        {
+          "name": [
+            {
+              "tr": "Yiyecekler",
+              "en": "Foods"
+            }
+          ],
+          "description": [
+            {
+              "tr": "Yiyecekler",
+              "en": "Foods"
+            }
+          ],
+          "image": "",
+          "products": [
+            {
+              "name": [
+                {
+                  "tr": "Kahvaltı Tabağı",
+                  "en": "Breakfast"
+                }
+              ],
+              "description": [
+                {
+                  "tr": "Kahvaltı Tabağı",
+                  "en": "Breakfast"
+                }
+              ],
+              "image": "",
+              "price": 10
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": [
+            {
+              "tr": "Yılbaşı Eğlencesi",
+              "en": "New Year Party"
+            }
+          ],
+          "description": [
+            {
+              "tr": "Yılbaşı Eğlencesi",
+              "en": "New Year Party"
+            }
+          ],
+          "image": "",
+          "date": "2020-01-01",
+          "time": "09:00",
+          "reservationPrice": 10
+        }
+      ]
+    }
+  ],
+  "userCompanies": [
+    {
+      "userId": 1,
+      "companyId": 1
+    }
+  ],
+  "companyTypes": [
+    {
+      "name": [
+        {
+          "tr": "Restorant",
+          "en": "Restorant"
+        }
+      ]
+    },
+    {
+      "name": [
+        {
+          "tr": "Kafe",
+          "en": "Cafe"
+        }
+      ]
+    }
+  ],
+  "permissions": [
+    {
+      "_id": "5e0d7b9b9b0b1e1b1c1b1c1b",
+      "name": {
+        "tr": "Kullanıcı Oluşturma",
+        "en": "Create User"
+      }
+    },
+    {
+      "_id": "5e0d7b9b9b0b1e1b1c1b1c1c",
+      "name": {
+        "tr": "Kullanıcı Güncelleme",
+        "en": "Update User"
+      }
+    }
+  ]
+}
