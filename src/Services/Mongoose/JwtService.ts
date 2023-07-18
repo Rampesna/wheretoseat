@@ -52,17 +52,17 @@ export class JwtService {
     });
     if (jwtToken) {
       try {
-        const verifiedToken = await verify(token, process.env.JWT_SECRET);
+        const verifiedToken: any = await verify(token, process.env.JWT_SECRET);
 
         if (verifiedToken.tokenableType === 'user') {
           verifiedToken.tokenable = await this.userModel.findOne({
-            _id: verifiedToken.tokenableId,
+            _id: (verifiedToken.tokenableId as string) ?? '',
           });
         }
 
         if (verifiedToken.tokenableType === 'customer') {
           verifiedToken.tokenable = await this.customerModel.findOne({
-            _id: verifiedToken.tokenableId,
+            _id: (verifiedToken.tokenableId as string) ?? '',
           });
         }
 

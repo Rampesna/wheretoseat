@@ -1,4 +1,5 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { UserService } from '../../Services/Mongoose/UserService';
 import { UserLoginRequest } from '../../Requests/AuthController/UserLoginRequest';
 import { UserRegisterRequest } from '../../Requests/AuthController/UserRegisterRequest';
@@ -14,33 +15,53 @@ export class AuthController {
   ) {}
 
   @Post('user/auth/login')
-  login(@Body() loginRequest: UserLoginRequest) {
-    return this.userService.login(loginRequest.email, loginRequest.password);
-  }
-
-  @Post('user/auth/register')
-  register(@Body() registerRequest: UserRegisterRequest) {
-    return this.userService.register(
-      registerRequest.name,
-      registerRequest.email,
-      registerRequest.password,
-    );
-  }
-
-  @Post('customer/auth/login')
-  customerLogin(@Body() loginRequest: CustomerLoginRequest) {
-    return this.customerService.login(
+  async login(
+    @Body() loginRequest: UserLoginRequest,
+    @Res() response: Response,
+  ) {
+    const serviceResponse = await this.userService.login(
       loginRequest.email,
       loginRequest.password,
     );
+    return response.status(serviceResponse.Status).json(serviceResponse);
   }
 
-  @Post('customer/auth/register')
-  customerRegister(@Body() registerRequest: CustomerRegisterRequest) {
-    return this.customerService.register(
+  @Post('user/auth/register')
+  async register(
+    @Body() registerRequest: UserRegisterRequest,
+    @Res() response: Response,
+  ) {
+    const serviceResponse = await this.userService.register(
       registerRequest.name,
       registerRequest.email,
       registerRequest.password,
     );
+    response.status(serviceResponse.Status).json(serviceResponse);
+  }
+
+  @Post('customer/auth/login')
+  async customerLogin(
+    @Body() loginRequest: CustomerLoginRequest,
+    @Res() response: Response,
+  ) {
+    const serviceResponse = await this.customerService.login(
+      loginRequest.email,
+      loginRequest.password,
+    );
+    response.status(serviceResponse.Status).json(serviceResponse);
+  }
+
+  @Post('customer/auth/register')
+  async customerRegister(
+    @Body() registerRequest: CustomerRegisterRequest,
+    @Res() response: Response,
+  ) {
+    const serviceResponse = await this.customerService.register(
+      registerRequest.name,
+      registerRequest.email,
+      registerRequest.password,
+    );
+
+    response.status(serviceResponse.Status).json(serviceResponse);
   }
 }

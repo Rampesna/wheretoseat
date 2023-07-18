@@ -8,7 +8,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new ValidationExceptionFilter());
   app.setGlobalPrefix('api');
-  await app.listen(3040);
+  await app.listen(3050);
 }
 
 bootstrap();
