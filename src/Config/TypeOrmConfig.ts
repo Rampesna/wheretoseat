@@ -7,7 +7,7 @@ export const dataSourceOptions: DataSourceOptions = {
   port: 3306,
   username: 'root',
   password: '',
-  database: 'wheretogo',
+  database: 'nestjs',
   entities: [path.resolve(__dirname, '../Models/TypeOrm/*{.ts,.js}')],
   synchronize: true,
 };
