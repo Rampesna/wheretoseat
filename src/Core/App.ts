@@ -30,15 +30,12 @@ import { AuthMiddleware } from '../Middlewares/AuthMiddleware';
 import { excludedRoutes } from '../Utils/AuthMiddlewareExclude';
 import { CheckUserMiddleware } from '../Middlewares/CheckUserMiddleware';
 import { CheckCustomerMiddleware } from '../Middlewares/CheckCustomerMiddleware';
+import { mongoseConfig } from '../Config/MongoseConfig';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRootAsync({
-      useFactory: () => ({
-        uri: 'mongodb://127.0.0.1:27017/wheretoseat',
-      }),
-    }),
+    MongooseModule.forRootAsync(mongoseConfig),
     MongooseModule.forFeature([
       { name: UserModel.name, schema: UserSchema },
       { name: CustomerModel.name, schema: CustomerSchema },
