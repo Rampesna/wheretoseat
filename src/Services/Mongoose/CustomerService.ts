@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import * as bcrypt from 'bcrypt';
+
 import {
   CustomerDocument,
   CustomerModel,
@@ -21,7 +23,7 @@ export class CustomerService {
       email: email,
     });
     if (customer) {
-      if (customer.password === password) {
+      if (bcrypt.compareSync(password, customer.password)) {
         const jwtResponse = await this.jwtService.create(
           'customer',
           customer._id.toString(),
@@ -53,7 +55,7 @@ export class CustomerService {
     const customerModel = new this.customerModel({
       name: name,
       email: email,
-      password: password,
+      password: bcrypt.hashSync(password, 10),
     });
 
     const createdCustomer = await customerModel.save();
