@@ -25,23 +25,34 @@ import { CompanyController } from '../Controllers/User/CompanyController';
 import {
   UserCompanyModel,
   UserCompanySchema,
-} from '../Models/Mongoose/User/UserCompany';
+} from '../Models/Mongoose/User/UserCompanyModel';
 import { AuthMiddleware } from '../Middlewares/AuthMiddleware';
 import { excludedRoutes } from '../Utils/AuthMiddlewareExclude';
 import { CheckUserMiddleware } from '../Middlewares/CheckUserMiddleware';
 import { CheckCustomerMiddleware } from '../Middlewares/CheckCustomerMiddleware';
-import { mongoseConfig } from '../Config/MongoseConfig';
+import { mongooseConfig } from '../Config/MongoseConfig';
+import {
+  CompanyTypeModel,
+  CompanyTypeSchema,
+} from '../Models/Mongoose/Company/CompanyTypeModel';
+import {
+  PermissionModel,
+  PermissionSchema,
+} from '../Models/Mongoose/Permission/PermissionModel';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRootAsync(mongoseConfig),
+    MongooseModule.forRootAsync(mongooseConfig),
     MongooseModule.forFeature([
       { name: UserModel.name, schema: UserSchema },
       { name: CustomerModel.name, schema: CustomerSchema },
       { name: JwtTokenModel.name, schema: JwtTokenSchema },
       { name: CompanyModel.name, schema: CompanySchema },
       { name: UserCompanyModel.name, schema: UserCompanySchema },
+      { name: CompanyTypeModel.name, schema: CompanyTypeSchema },
+      { name: UserCompanyModel.name, schema: UserCompanySchema },
+      { name: PermissionModel.name, schema: PermissionSchema },
     ]),
   ],
   controllers: [

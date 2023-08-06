@@ -6,7 +6,7 @@
       "password": "123",
       "companies": [
         {
-          "_id": "5e0d7b9b9b0b1e1b1c1b1c1b",
+          "companyId": "5e0d7b9b9b0b1e1b1c1b1c1b",
           "permissions": [
             1,
             2,

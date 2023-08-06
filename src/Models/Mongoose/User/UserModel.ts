@@ -1,6 +1,6 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { UserCompanyModel, UserCompanySchema } from './UserCompany';
+import { UserCompanyModel, UserCompanySchema } from './UserCompanyModel';
 
 @Schema({
   collection: 'users',
@@ -18,7 +18,10 @@ export class UserModel extends Document {
   @Prop()
   password: string;
 
-  @Prop({ type: [UserCompanySchema] })
+  @Prop({
+    type: [UserCompanySchema],
+    default: [],
+  })
   companies: UserCompanyModel[];
 }
 

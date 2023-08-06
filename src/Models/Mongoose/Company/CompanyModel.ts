@@ -18,8 +18,8 @@ export class CompanyModel extends Document {
   @Prop({ type: String })
   title: string;
 
-  @Prop({ type: [CompanyTypeSchema] })
-  type: CompanyTypeModel;
+  @Prop({ type: String })
+  typeId: string;
 
   @Prop({ type: String })
   taxNumber: string;
