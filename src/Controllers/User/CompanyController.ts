@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Put,
   Req,
   Res,
   UseInterceptors,
@@ -11,7 +12,8 @@ import { CompanyService } from '../../Services/Mongoose/CompanyService';
 import { AuthMiddleware } from '../../Middlewares/AuthMiddleware';
 import { Response } from 'express';
 import { RegisterRequest } from '../../Requests/CompanyController/RegisterRequest';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { UpdateRequest } from '../../Requests/CompanyController/UpdateRequest';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @UseInterceptors(AuthMiddleware)
@@ -19,6 +21,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
+  @ApiTags('Company')
   @Get('getByUser')
   async getByUser(@Req() request, @Res() response: Response) {
     const serviceResponse = await this.companyService.getByUser(
@@ -27,6 +30,7 @@ export class CompanyController {
     response.status(serviceResponse.Status).json(serviceResponse);
   }
 
+  @ApiTags('Company')
   @Post('register')
   async register(
     @Req() request,
@@ -42,6 +46,27 @@ export class CompanyController {
       registerRequest.phone,
       registerRequest.email,
       registerRequest.address,
+    );
+    response.status(serviceResponse.Status).json(serviceResponse);
+  }
+
+  @ApiTags('Company')
+  @Put('update')
+  async update(
+    @Req() request,
+    @Res() response: Response,
+    @Body() updateRequest: UpdateRequest,
+  ) {
+    const serviceResponse = await this.companyService.update(
+      request.client.tokenable._id,
+      updateRequest.companyId,
+      updateRequest.title,
+      updateRequest.typeId,
+      updateRequest.taxNumber,
+      updateRequest.taxOffice,
+      updateRequest.phone,
+      updateRequest.email,
+      updateRequest.address,
     );
     response.status(serviceResponse.Status).json(serviceResponse);
   }

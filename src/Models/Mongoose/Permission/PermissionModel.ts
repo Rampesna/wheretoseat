@@ -1,6 +1,5 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { UserModel } from '../User/UserModel';
 
 @Schema({ collection: 'permissions' })
 export class PermissionModel extends Document {

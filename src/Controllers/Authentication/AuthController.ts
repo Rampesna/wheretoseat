@@ -6,6 +6,7 @@ import { UserRegisterRequest } from '../../Requests/AuthController/UserRegisterR
 import { CustomerLoginRequest as CustomerLoginRequest } from '../../Requests/AuthController/CustomerLoginRequest';
 import { CustomerRegisterRequest as CustomerRegisterRequest } from '../../Requests/AuthController/CustomerRegisterRequest';
 import { CustomerService } from '../../Services/Mongoose/CustomerService';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller()
 export class AuthController {
@@ -14,6 +15,7 @@ export class AuthController {
     private readonly customerService: CustomerService,
   ) {}
 
+  @ApiTags('Authentications')
   @Post('user/auth/login')
   async login(
     @Body() loginRequest: UserLoginRequest,
@@ -26,6 +28,7 @@ export class AuthController {
     return response.status(serviceResponse.Status).json(serviceResponse);
   }
 
+  @ApiTags('Authentications')
   @Post('user/auth/register')
   async register(
     @Body() registerRequest: UserRegisterRequest,
@@ -39,6 +42,7 @@ export class AuthController {
     response.status(serviceResponse.Status).json(serviceResponse);
   }
 
+  @ApiTags('Authentications')
   @Post('customer/auth/login')
   async customerLogin(
     @Body() loginRequest: CustomerLoginRequest,
@@ -51,6 +55,7 @@ export class AuthController {
     response.status(serviceResponse.Status).json(serviceResponse);
   }
 
+  @ApiTags('Authentications')
   @Post('customer/auth/register')
   async customerRegister(
     @Body() registerRequest: CustomerRegisterRequest,

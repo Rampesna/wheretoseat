@@ -2,7 +2,7 @@ import { Controller, Get, UseInterceptors } from '@nestjs/common';
 import { CustomerService } from '../../Services/Mongoose/CustomerService';
 import { AuthMiddleware } from '../../Middlewares/AuthMiddleware';
 import { CheckCustomerMiddleware } from '../../Middlewares/CheckCustomerMiddleware';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiBearerAuth()
 @UseInterceptors(AuthMiddleware, CheckCustomerMiddleware)
@@ -10,6 +10,7 @@ import { ApiBearerAuth } from '@nestjs/swagger';
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
+  @ApiTags('Customer')
   @Get('getAll')
   getAll() {
     return this.customerService.getAll();

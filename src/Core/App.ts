@@ -25,7 +25,7 @@ import { CompanyController } from '../Controllers/User/CompanyController';
 import {
   UserCompanyModel,
   UserCompanySchema,
-} from '../Models/Mongoose/User/UserCompanyModel';
+} from '../Models/Mongoose/User/Company/UserCompanyModel';
 import { AuthMiddleware } from '../Middlewares/AuthMiddleware';
 import { excludedRoutes } from '../Utils/AuthMiddlewareExclude';
 import { CheckUserMiddleware } from '../Middlewares/CheckUserMiddleware';

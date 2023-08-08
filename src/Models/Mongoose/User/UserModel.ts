@@ -1,6 +1,9 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { UserCompanyModel, UserCompanySchema } from './UserCompanyModel';
+import {
+  UserCompanyModel,
+  UserCompanySchema,
+} from './Company/UserCompanyModel';
 
 @Schema({
   collection: 'users',
