@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { UserController } from '../Controllers/User/UserController';
@@ -39,6 +44,7 @@ import {
   PermissionModel,
   PermissionSchema,
 } from '../Models/Mongoose/Permission/PermissionModel';
+import { CheckUserHasCompanyMiddleware } from '../Middlewares/CheckUserHasCompanyMiddleware';
 
 @Module({
   imports: [
@@ -75,5 +81,13 @@ export class AppModule implements NestModule {
       .forRoutes(UserController, CompanyController);
 
     consumer.apply(CheckCustomerMiddleware).forRoutes(CustomerController);
+
+    consumer
+      .apply(CheckUserHasCompanyMiddleware)
+      .exclude({
+        path: 'user/company/register',
+        method: RequestMethod.POST,
+      })
+      .forRoutes(CompanyController);
   }
 }

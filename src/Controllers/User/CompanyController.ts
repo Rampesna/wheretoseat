@@ -13,6 +13,7 @@ import { AuthMiddleware } from '../../Middlewares/AuthMiddleware';
 import { Response } from 'express';
 import { RegisterRequest } from '../../Requests/CompanyController/RegisterRequest';
 import { UpdateRequest } from '../../Requests/CompanyController/UpdateRequest';
+import { UpdateWorkDaysRequest } from '../../Requests/CompanyController/UpdateWorkDaysRequest';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiBearerAuth()
@@ -67,6 +68,21 @@ export class CompanyController {
       updateRequest.phone,
       updateRequest.email,
       updateRequest.address,
+    );
+    response.status(serviceResponse.Status).json(serviceResponse);
+  }
+
+  @ApiTags('Company')
+  @Put('updateWorkDays')
+  async updateWorkDays(
+    @Req() request,
+    @Res() response: Response,
+    @Body() updateWorkDaysRequest: UpdateWorkDaysRequest,
+  ) {
+    const serviceResponse = await this.companyService.updateWorkDays(
+      request.client.tokenable._id,
+      updateWorkDaysRequest.companyId,
+      updateWorkDaysRequest.workDays,
     );
     response.status(serviceResponse.Status).json(serviceResponse);
   }

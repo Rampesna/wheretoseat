@@ -15,6 +15,7 @@ import {
   PermissionDocument,
   PermissionModel,
 } from '../../Models/Mongoose/Permission/PermissionModel';
+import { WorkDayModel } from '../../Models/Mongoose/Company/Workday/WorkDayModel';
 
 @Injectable()
 export class CompanyService {
@@ -141,5 +142,36 @@ export class CompanyService {
     await company.save();
 
     return new ServiceResponse(true, 'Company updated', company, 200);
+  }
+
+  async updateWorkDays(
+    userId: string,
+    companyId: string,
+    workDays: WorkDayModel[],
+  ) {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      return new ServiceResponse(false, 'User not found', null, 404);
+    }
+
+    // check if companyId is in user.companies
+    const userCompany = user.companies.find(
+      (userCompany) => userCompany.companyId == companyId,
+    );
+
+    if (!userCompany) {
+      return new ServiceResponse(false, 'Company not found', null, 404);
+    }
+
+    const company = await this.companyModel.findById(companyId);
+    if (!company) {
+      return new ServiceResponse(false, 'Company not found', null, 404);
+    }
+
+    company.workDays = workDays;
+
+    await company.save();
+
+    return new ServiceResponse(true, 'Company work days updated', company, 200);
   }
 }

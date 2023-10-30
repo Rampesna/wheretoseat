@@ -80,4 +80,12 @@ export class UserService {
       200,
     );
   }
+
+  async getById(id: string) {
+    const user = await this.userModel.findById(id).exec();
+    if (!user) {
+      return new ServiceResponse(false, 'User not found', null, 404);
+    }
+    return new ServiceResponse(true, 'User found', user, 200);
+  }
 }
